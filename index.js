@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-const MongoClient = require('mongodb').MongoClient;
+const { MongoClient } = require('mongodb');
 const objectId = require('mongodb').ObjectID;
 const cors = require('cors');
 require('dotenv').config();
-const port = process.env.PORT || 5055;
+const port = 5055;
 
 app.use(express.json());
 app.use(cors());
@@ -15,13 +15,14 @@ app.get('/', (req, res) => {
 
 // little updated connected with public repo
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.oqab1.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.zlt6h.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 client.connect((err) => {
+  console.log(err);
   const serviceCollection = client.db('picture-shop').collection('services');
   const adminCollection = client.db('picture-shop').collection('admins');
   const orderCollection = client.db('picture-shop').collection('orders');
@@ -99,4 +100,4 @@ client.connect((err) => {
   });
 });
 
-app.listen(port);
+app.listen(port || process.env.PORT);
