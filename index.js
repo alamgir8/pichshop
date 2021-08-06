@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 // little updated connected with public repo
 
 const uri = `${process.env.MONGO_URI}`;
+console.log(process.env.MONGO_URI);
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
