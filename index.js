@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 // little updated connected with public repo
 
-const uri = `mongodb+srv://mydbuser:adminDashboard12345@cluster0.zlt6h.mongodb.net/picture-shop?retryWrites=true&w=majority`;
+const uri = `${process.env.MONGO_URI}`;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
