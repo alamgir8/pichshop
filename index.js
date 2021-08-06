@@ -3,6 +3,7 @@ const app = express();
 const { MongoClient } = require('mongodb');
 const objectId = require('mongodb').ObjectID;
 const cors = require('cors');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 const port = 5055;
 
@@ -15,14 +16,14 @@ app.get('/', (req, res) => {
 
 // little updated connected with public repo
 
-const uri = `mongodb+srv://mydbuser:adminDashboard12345@cluster0.zlt6h.mongodb.net/picShop?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://mydbuser:adminDashboard12345@cluster0.zlt6h.mongodb.net/picture-shop?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 client.connect((err) => {
-  console.log('err', err);
+  console.log(err);
   const serviceCollection = client.db('picture-shop').collection('services');
   const adminCollection = client.db('picture-shop').collection('admins');
   const orderCollection = client.db('picture-shop').collection('orders');
